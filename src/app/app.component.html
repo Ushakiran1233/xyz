@@ -1,0 +1,63 @@
+<!-- employee.component.html -->
+<div>
+  <h2>Employee Management</h2>
+  
+  <!-- Employee Form -->
+    <form (ngSubmit)="saveEmployee()">
+    <label>Emp No:</label>
+    <input type="text" [(ngModel)]="empno" name="empno" required />
+
+    <label>Emp Name:</label>
+    <input type="text" [(ngModel)]="empname" name="empname" required />
+
+    <label>Salary:</label>
+    <input type="number" [(ngModel)]="salary" name="salary" required />
+
+    <label>Country:</label>
+    <select [(ngModel)]="selectedCountry" name="selectedCountry" (change)="onCountryChange()" required>
+      <option *ngFor="let country of Country" [value]="country.countryid">{{ country.countryname }}</option>
+    </select>
+
+    <label>State:</label>
+    <select [(ngModel)]="selectedState" name="selectedState" (change)="onStateChange()" required>
+      <option *ngFor="let state of States" [value]="state.stateid">{{ state.statename }}</option>
+    </select>
+
+    <label>City:</label>
+    <select [(ngModel)]="selectedCity" name="selectedCity" required>
+      <option *ngFor="let city of City" [value]="city.cityid">{{ city.cityname }}</option>
+    </select>
+
+    <button type="submit">Save</button>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </form>
+
+  <!-- Employee Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Emp No</th>
+        <th>Emp Name</th>
+        <th>Salary</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of Emp">
+        <td>{{ emp.empno }}</td>
+        <td>{{ emp.empname }}</td>
+        <td>{{ emp.salary }}</td>
+        <td>{{ emp.countryname }}</td>
+        <td>{{ emp.statename }}</td>
+        <td>{{ emp.cityname }}</td>
+        <td>
+          <button (click)="editEmployee(emp)">Edit</button>
+          <button (click)="deleteEmployee(emp.empno)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
