@@ -9,7 +9,7 @@ export class EmployeeService {
   private geturl="";
   private countryurl="";
   private stateurl="";
-  // private cityurl="";
+  private cityurl="";
 
   getemp()
   {
